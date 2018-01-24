@@ -110,3 +110,4 @@ print('{1:5}, {2:5}, {0:5}\n'.format('x', 'y', 'z'))
 for n in range(len(x)):
     print('{1:10.0}, {2:10}, {0:10}\n'.format(x[n], y[n], z[n]))
     
+ 
