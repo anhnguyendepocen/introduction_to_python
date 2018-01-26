@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Introduction to Python, 6
+Introduction to Python, 7
 
-Created on Sat Jan 23 22:57:01 2018
+Created on Thurs Jan 25 22:57:01 2018
 
 @author: Claire Kelling
 
-The purpose of this file is to learn matrices and dictionaries.
+The purpose of this file is to learn matrices and arrays.
 
 """
 
@@ -17,12 +17,11 @@ os.chdir('C:/Users/ckell/OneDrive/Penn State/Research/Python/introduction_to_pyt
 # Numpy matrix is strictly 2-dimensional, while numpy arrays can be any 
 # dimension
 
-# Let's do matrices first
-
+# We will do matrices first
 import numpy as np  # imports numpy module and names it "np"
 
 # make 2 x 2 matrix with 4, 3 in first row and 2, 1 in second row
-a = np.mat('1, 2; 3, 4')
+a = np.mat('1, 2; 3, 4') #semicolon is new line, has to be in a string
 print(a)  # print matrix
 
 # note that a is a "matrix" object, which is different from an "array" object
@@ -39,15 +38,18 @@ a[:, 0]
 
 # get ALL values in last row
 a[-1, :]
+a[-1] #also gets all values in same row, but this is only for rows
 
 a.T  # take transpose of matrix with the "T" method
 
 a.I  # take inverse of matrix with the "I" method
 a.i  # methods/functions are case-sensitive; must use uppercase I for inverse
+            # this will return an error
 
 b = np.mat('1, 3; 5, 7')  # create another matrix
 
 a*b  # matrix multiplication is with asterisk (star) operator
+a+b  # elementwise addition of matrices
 
 np.multiply(a, 3)  # elementwise multiplication of matrix with scalar
 a*3  # elementwise multiplication of matrix with scalar also works with *
@@ -59,23 +61,32 @@ np.divide(a, b)  # elementwise divide 2 x 2 matrix with 2 x 2 matrix
 np.power(a, 3)  # elementwise exponentiation with scalar
 np.power(a, b)  # elementwise exponentiation with matrix elements
 
+###################
+### Arrays
+###################
+
 # Alternatively, numpy arrays can be used in lieu of matrices
 
 c = np.array([[1, 2], [3, 4]])  # create 2 x 2 array (note the square brackets)
+# can easily form arrays using lists
 print(c)  # print out the array
 type(c)  # show that it is an ndarray
 
 d = np.array([[1, 3], [5, 7]])  # create another array
 
+# note that arrays must have same data type throughout the array
+d[1,1] = "cow"
+
 np.array(a)  # can convert a matrix into an array easily
 np.mat(c)  # and vise versa
 
-np.zeros(5)  # create 1D array of zeros with 5 columns
+z1 = np.zeros(5)  # create 1D array of zeros with 5 columns
+print(z1)
 z = np.zeros([4, 6])  # create 2D array of zeros with 4 rows, 6 columns
 print(z)
 
 np.size(z)  # get number of elements in array
-np.shape(z)  # get dimensions of array
+np.shape(z)  # get dimensions of array (rows, columns)
 
 np.identity(4)  # create identity matrix array of size 4 x 4
 
@@ -88,8 +99,9 @@ np.ones([3, 5])  # create 2D array of ones with 3 rows, 5 columns
 c[0, 0]  # get element at 0th row, 0th column of array c
 c[:, 1]  # get all rows of 1st column of c
 
-# Indexing a range of values in an array
-
+##############
+### Indexing a range of values in an array
+##############
 ar = np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]])
 print(ar)
 # indexes the rows in 0th up to but not including 2nd position, and the columns
@@ -110,7 +122,7 @@ print(z)
 
 # When assigning values to an array, the size of the input must be either 1
 # (so you assign a scalar to all points) or equal to the indexed area
-# Example: these will give an error
+#                 Example: these will give an error
 z[:, -1] = np.ones(3)  # assign all values in last column of z to be 1
 z[0, 0] = np.zeros(3)  # assign all values in last column of z to be 1
 
@@ -130,12 +142,15 @@ a@b  # array matrix multiplication is with @ operator
 # Elementwise operations
 # All regular math operators (e.g. +, -, *, /, **) are elementwise on arrays
 # For matrices, you must use functions like multiply or power
-2*c  # elementwise multiply 2 by array
+2*c  # elementwise multiply 2 by array, this also works for matrices
 # order does not matter with scalar multiplication
 c*2  # elementwise multiply array by 2
-c+2  # elementwise add array plus two
+c+2  # elementwise add array plus two, this also works for matrices
 c/7  # elementwise divide array by 7
 c**2  # take each element array to power of two
 
-a.nonzero()  # get nonzero elements of matrix
+q = z.nonzero()  # get nonzero elements of matrix
+# rows and columns of nonzero elements
 c.nonzero()  # get nonzero elements of array
+
+z[q] #returns on zero elements, in an array
