@@ -6,7 +6,7 @@ Created on Sat Jan 23 22:57:01 2018
 
 @author: Claire Kelling
 
-The purpose of this file is to learn matrices and dictionaries.
+The purpose of this file is to learn dictionaries.
 
 """
 
